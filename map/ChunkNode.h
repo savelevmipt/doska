@@ -10,19 +10,29 @@
 struct ChunkRect{
     int ox, oy, w, h;
     //ненулевое ли пересечение двух наборов?
-    bool intersects(ChunkRect oth) const{
-        return (ox + w > oth.ox && oth.ox + oth.w > ox)
-               && (oy + h > oth.oy && oth.oy + h > oy);
-    }
+    bool intersects(ChunkRect oth) const;
+    bool contains(int x, int y) const;
+    // Далее для правильных квадратных наборов (какими могут быть ChunkNode)
+    // Находит набор родителя из набора ребенка
+    void toParent(int parent_idx);
+    // Находит набор ребенка
+    void toChild(int child_id);
+    // Находит номер ребенка по координатам
+    // -1, если x, y не содержатся в rect
+    int getChildIdx(int x, int y) const;
 };
 
 /*
  * Элемент чанковой сетки
  *
  * Содержит таблицу из 4 дочерних элементов.
+ * 3 | 0
+ * --+--
+ * 2 | 1
+ *
  * так же содержит родительский элемент и свою позицию в нем
  * Такая структура данных обеспечит любые запросы к базе чанков за O(log(w)), где w - ширина используемой области доски в чанках
- * Итерация будет происходить за O(N*log(w)), где N - количество видимых на экране чанков
+ * Итерация будет происходить за O(log(w) + N), где N - количество видимых на экране, уже созданных чанков
  *
  * */
 struct ChunkNode {
@@ -34,13 +44,7 @@ public:
 
     Chunk *chunk = nullptr;
 
-    ChunkNode(){
-        ch[0] = nullptr;
-        ch[1] = nullptr;
-        ch[2] = nullptr;
-        ch[3] = nullptr;
-    }
-
+    ChunkNode();
 };
 
 

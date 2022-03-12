@@ -28,21 +28,19 @@ private:
 
     //поля одного цикла (меняются раз в цикл)
     ChunkRect rect;
-    ChunkNode* max_net;//наименьший элемент сетки, содержащий в себе все чанки набора
-    ChunkRect max_net_rect;
     //меняются каждую итерацию
     ChunkNode* curr_net;
-    int cur_x, cur_y;
+    ChunkRect curr_rect;
 public:
     //net - неизменное поле итератора
     ChunkIterator(ChunkNet& net);
-    //setBounds() - Задать набор чанков
-    //и найти max_net, curr_net = NULL
+    //setBounds() - Задать набор чанков и приготовить итератор
     void setBounds(int ox, int oy, int w, int h);
-
-    //получить следующий ненулевой элемент cur_net и его координаты
+    //перезапустить итератор на том же наборе
+    void reset();
+    //получить следующий ненулевой элемент curr_net и его координаты
     //возвращает true, если следующий элемент найден
-    //если элемент не найден, то зануляем max_net и возвращаем false
+    //если элемент не найден, то зануляем curr_net и возвращаем false
     bool next();
     //getterы
     Chunk* getChunk() const;
