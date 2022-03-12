@@ -56,6 +56,34 @@ build CMakeFiles/doska.dir/main.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Mat
   OBJECT_DIR = CMakeFiles\doska.dir
   OBJECT_FILE_DIR = CMakeFiles\doska.dir
 
+build CMakeFiles/doska.dir/Doska.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/Doska.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles\doska.dir\Doska.cpp.obj.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
+  OBJECT_DIR = CMakeFiles\doska.dir
+  OBJECT_FILE_DIR = CMakeFiles\doska.dir
+
+build CMakeFiles/doska.dir/ChunkNet.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/ChunkNet.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles\doska.dir\ChunkNet.cpp.obj.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
+  OBJECT_DIR = CMakeFiles\doska.dir
+  OBJECT_FILE_DIR = CMakeFiles\doska.dir
+
+build CMakeFiles/doska.dir/Chunk.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/Chunk.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles\doska.dir\Chunk.cpp.obj.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
+  OBJECT_DIR = CMakeFiles\doska.dir
+  OBJECT_FILE_DIR = CMakeFiles\doska.dir
+
+build CMakeFiles/doska.dir/ChunkIterator.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/ChunkIterator.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles\doska.dir\ChunkIterator.cpp.obj.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
+  OBJECT_DIR = CMakeFiles\doska.dir
+  OBJECT_FILE_DIR = CMakeFiles\doska.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target doska
@@ -64,7 +92,7 @@ build CMakeFiles/doska.dir/main.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Mat
 #############################################
 # Link the executable doska.exe
 
-build doska.exe: CXX_EXECUTABLE_LINKER__doska_Debug CMakeFiles/doska.dir/main.cpp.obj
+build doska.exe: CXX_EXECUTABLE_LINKER__doska_Debug CMakeFiles/doska.dir/main.cpp.obj CMakeFiles/doska.dir/Doska.cpp.obj CMakeFiles/doska.dir/ChunkNet.cpp.obj CMakeFiles/doska.dir/Chunk.cpp.obj CMakeFiles/doska.dir/ChunkIterator.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lSDL2main  -lSDL2  -lSDL2test  -lSDL2_image  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/lib/x64   -LC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/lib/x64

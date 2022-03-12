@@ -11,13 +11,13 @@ int main(int argc, char** argv) {
                              SDL_WINDOWPOS_UNDEFINED,
                              1280, 720,
                              SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
-    if(window == NULL){
+    if(window == nullptr){
         std::cout << "Error making window\n";
         return 1;
     }
 
     SDL_Surface* surf = SDL_GetWindowSurface(window);
-    SDL_FillRect(surf, NULL, SDL_MapRGB(surf->format, 0, 255, 0));
+    SDL_FillRect(surf, nullptr, SDL_MapRGB(surf->format, 0, 255, 0));
 
     SDL_UpdateWindowSurface(window);
 
