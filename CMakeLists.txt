@@ -15,7 +15,7 @@ link_directories(${SDL2_IMAGE_DIR}/lib/x64)
 
 
 
-add_executable(doska main.cpp map/Doska.cpp map/Doska.h map/ChunkNet.h map/Chunk.cpp map/Chunk.h map/ChunkIterator.cpp map/ChunkIterator.h)
+add_executable(doska main.cpp map/ChunkNet.cpp map/ChunkNet.h map/ChunkNode.h map/Chunk.cpp map/Chunk.h map/ChunkIterator.cpp map/ChunkIterator.h)
 
 
 

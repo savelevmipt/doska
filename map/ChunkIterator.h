@@ -4,7 +4,7 @@
 
 #ifndef DOSKA_CHUNKITERATOR_H
 #define DOSKA_CHUNKITERATOR_H
-#include "Doska.h"
+#include "ChunkNet.h"
 /*Итератор по набору чанков
   Набор чанков задается прямоугольником (ox, oy, w, h)
 
@@ -24,18 +24,18 @@
 class ChunkIterator {
 private:
     //неизменное поле
-    Doska& doska;
+    ChunkNet& net;
 
     //поля одного цикла (меняются раз в цикл)
     ChunkRect rect;
-    ChunkNet* max_net;//наименьший элемент сетки, содержащий в себе все чанки набора
-
+    ChunkNode* max_net;//наименьший элемент сетки, содержащий в себе все чанки набора
+    ChunkRect max_net_rect;
     //меняются каждую итерацию
-    ChunkNet* curr_net;
+    ChunkNode* curr_net;
     int cur_x, cur_y;
 public:
-    //doska - неизменное поле итератора
-    ChunkIterator(Doska& doska);
+    //net - неизменное поле итератора
+    ChunkIterator(ChunkNet& net);
     //setBounds() - Задать набор чанков
     //и найти max_net, curr_net = NULL
     void setBounds(int ox, int oy, int w, int h);
@@ -45,9 +45,9 @@ public:
     //если элемент не найден, то зануляем max_net и возвращаем false
     bool next();
     //getterы
-    Chunk* getChunk();
-    int getX();
-    int getY();
+    Chunk* getChunk() const;
+    int getX() const;
+    int getY() const;
 };
 
 
