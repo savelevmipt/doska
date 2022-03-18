@@ -1,8 +1,12 @@
 # ninja log v5
-133	314	6688226868144588	doska.exe	d1b7348313c1ba2d
+5	121	6693432035660419	CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj	8c7f29949df9bcd9
 15	118	6688226866264974	CMakeFiles/doska.dir/map/Chunk.cpp.obj	a0bc3a9185e9abff
-7	127	6688226866264974	CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj	8c7f29949df9bcd9
-11	2258	6687716460102951	CMakeFiles/doska.dir/main.cpp.obj	c893b3834f2afa47
-11	125	6688226866264974	CMakeFiles/doska.dir/map/ChunkNet.cpp.obj	47119eeb6f19423
-3	204	6693316047641799	build.ninja	809182c8aa99e7ca
-4	132	6688226866421312	CMakeFiles/doska.dir/map/ChunkNode.cpp.obj	e6eb3ee8e0459e29
+398	533	6693432039734410	doska.exe	cb0e19d75afe6e7b
+12	122	6693432035660419	CMakeFiles/doska.dir/map/ChunkNet.cpp.obj	47119eeb6f19423
+7	1694	6693431502083555	CMakeFiles/doska.dir/main.cpp.obj	c893b3834f2afa47
+4	222	6693432062094272	build.ninja	809182c8aa99e7ca
+20	135	6693432035816745	CMakeFiles/doska.dir/map/ChunkNode.cpp.obj	e6eb3ee8e0459e29
+16	119	6693432035660419	CMakeFiles/doska.dir/Chunk.cpp.obj	98d5de1b895275cd
+24	390	6693432038323761	CMakeFiles/doska.dir/utils/Vector2.cpp.obj	e38028e4c633e2ab
+8	397	6693432038480094	CMakeFiles/doska.dir/utils/Position.cpp.obj	d288a11cfb6cfe9c
+26	1408	6693431499138858	CMakeFiles/doska.dir/view/Camera.cpp.obj	aaabf0e8154b1c2
