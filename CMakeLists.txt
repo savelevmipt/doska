@@ -11,8 +11,9 @@ if (WIN32)
     include_directories(${SDL2_IMAGE_DIR}/include)
     link_directories(${SDL2_DIR}/lib/x64)
     link_directories(${SDL2_IMAGE_DIR}/lib/x64)
-else()
-
+elseif(APPLE)
+    set(SDL2_DIR ${PROJECT_SOURCE_DIR}/lib/SDL2.framework)
+    include_directories(${SDL2_DIR}/Headers)
 endif ()
 
 
@@ -23,6 +24,6 @@ add_executable(doska main.cpp map/ChunkNet.cpp map/ChunkNet.h map/ChunkNode.h Ch
 
 if(WIN32)
     target_link_libraries(doska SDL2main SDL2 SDL2test SDL2_image)
-else()
-
+elseif(APPLE)
+    target_link_libraries(doska ${SDL2_DIR}/SDL2)
 endif()

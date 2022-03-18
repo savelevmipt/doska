@@ -39,7 +39,30 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/Matvey/CLionProjects/doska/cmake-build-debug/
+cmake_ninja_workdir = /Users/savelevaleksandr/CLionProjects/doska/cmake-build-debug/
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/savelevaleksandr/CLionProjects/doska/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/savelevaleksandr/CLionProjects/doska -B/Users/savelevaleksandr/CLionProjects/doska/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/savelevaleksandr/CLionProjects/doska/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
 # =============================================================================
 # Object build statements for EXECUTABLE target doska
 
@@ -49,61 +72,61 @@ cmake_ninja_workdir = C$:/Users/Matvey/CLionProjects/doska/cmake-build-debug/
 
 build cmake_object_order_depends_target_doska: phony || CMakeFiles/doska.dir
 
-build CMakeFiles/doska.dir/main.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/main.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\main.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir
+build CMakeFiles/doska.dir/main.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/main.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/main.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir
 
-build CMakeFiles/doska.dir/map/ChunkNet.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/map/ChunkNet.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\map\ChunkNet.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir\map
+build CMakeFiles/doska.dir/map/ChunkNet.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/map/ChunkNet.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/map/ChunkNet.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir/map
 
-build CMakeFiles/doska.dir/Chunk.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/Chunk.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\Chunk.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir
+build CMakeFiles/doska.dir/Chunk.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/Chunk.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/Chunk.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir
 
-build CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/map/ChunkIterator.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\map\ChunkIterator.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir\map
+build CMakeFiles/doska.dir/map/ChunkIterator.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/map/ChunkIterator.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/map/ChunkIterator.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir/map
 
-build CMakeFiles/doska.dir/map/ChunkNode.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/map/ChunkNode.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\map\ChunkNode.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir\map
+build CMakeFiles/doska.dir/map/ChunkNode.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/map/ChunkNode.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/map/ChunkNode.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir/map
 
-build CMakeFiles/doska.dir/view/Camera.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/view/Camera.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\view\Camera.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir\view
+build CMakeFiles/doska.dir/view/Camera.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/view/Camera.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/view/Camera.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir/view
 
-build CMakeFiles/doska.dir/utils/Position.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/utils/Position.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\utils\Position.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir\utils
+build CMakeFiles/doska.dir/utils/Position.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/utils/Position.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/utils/Position.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir/utils
 
-build CMakeFiles/doska.dir/utils/Vector2.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/utils/Vector2.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\utils\Vector2.cpp.obj.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
-  OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir\utils
+build CMakeFiles/doska.dir/utils/Vector2.cpp.o: CXX_COMPILER__doska_Debug /Users/savelevaleksandr/CLionProjects/doska/utils/Vector2.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles/doska.dir/utils/Vector2.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
+  INCLUDES = -I/Users/savelevaleksandr/CLionProjects/doska/lib/SDL2.framework/Headers -F/Users/savelevaleksandr/CLionProjects/doska/lib
+  OBJECT_DIR = CMakeFiles/doska.dir
+  OBJECT_FILE_DIR = CMakeFiles/doska.dir/utils
 
 
 # =============================================================================
@@ -111,46 +134,19 @@ build CMakeFiles/doska.dir/utils/Vector2.cpp.obj: CXX_COMPILER__doska_Debug C$:/
 
 
 #############################################
-# Link the executable doska.exe
+# Link the executable doska
 
-build doska.exe: CXX_EXECUTABLE_LINKER__doska_Debug CMakeFiles/doska.dir/main.cpp.obj CMakeFiles/doska.dir/map/ChunkNet.cpp.obj CMakeFiles/doska.dir/Chunk.cpp.obj CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj CMakeFiles/doska.dir/map/ChunkNode.cpp.obj CMakeFiles/doska.dir/view/Camera.cpp.obj CMakeFiles/doska.dir/utils/Position.cpp.obj CMakeFiles/doska.dir/utils/Vector2.cpp.obj
-  FLAGS = -g
-  LINK_LIBRARIES = -lSDL2main  -lSDL2  -lSDL2test  -lSDL2_image  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  LINK_PATH = -LC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/lib/x64   -LC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/lib/x64
-  OBJECT_DIR = CMakeFiles\doska.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = doska.exe
-  TARGET_IMPLIB = libdoska.dll.a
-  TARGET_PDB = doska.exe.dbg
-
-
-#############################################
-# Utility command for edit_cache
-
-build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Matvey\CLionProjects\doska\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build edit_cache: phony CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Matvey\CLionProjects\doska\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\Matvey\CLionProjects\doska -BC:\Users\Matvey\CLionProjects\doska\cmake-build-debug"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+build doska: CXX_EXECUTABLE_LINKER__doska_Debug CMakeFiles/doska.dir/main.cpp.o CMakeFiles/doska.dir/map/ChunkNet.cpp.o CMakeFiles/doska.dir/Chunk.cpp.o CMakeFiles/doska.dir/map/ChunkIterator.cpp.o CMakeFiles/doska.dir/map/ChunkNode.cpp.o CMakeFiles/doska.dir/view/Camera.cpp.o CMakeFiles/doska.dir/utils/Position.cpp.o CMakeFiles/doska.dir/utils/Vector2.cpp.o | ../lib/SDL2.framework/SDL2
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
+  LINK_LIBRARIES = -Wl,-rpath,/Users/savelevaleksandr/CLionProjects/doska/lib  ../lib/SDL2.framework/SDL2
+  OBJECT_DIR = CMakeFiles/doska.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = doska
+  TARGET_PDB = doska.dbg
 
 # =============================================================================
 # Target aliases.
-
-build doska: phony doska.exe
 
 # =============================================================================
 # Folder targets.
@@ -158,9 +154,9 @@ build doska: phony doska.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Matvey/CLionProjects/doska/cmake-build-debug
+# Folder: /Users/savelevaleksandr/CLionProjects/doska/cmake-build-debug
 
-build all: phony doska.exe
+build all: phony doska
 
 # =============================================================================
 # Built-in targets
@@ -169,14 +165,14 @@ build all: phony doska.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeRCCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.2.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeRCCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
 
 
 #############################################
