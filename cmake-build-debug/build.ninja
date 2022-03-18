@@ -84,15 +84,22 @@ build CMakeFiles/doska.dir/map/ChunkNode.cpp.obj: CXX_COMPILER__doska_Debug C$:/
   OBJECT_DIR = CMakeFiles\doska.dir
   OBJECT_FILE_DIR = CMakeFiles\doska.dir\map
 
-build CMakeFiles/doska.dir/Camera.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/Camera.cpp || cmake_object_order_depends_target_doska
-  DEP_FILE = CMakeFiles\doska.dir\Camera.cpp.obj.d
+build CMakeFiles/doska.dir/view/Camera.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/view/Camera.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles\doska.dir\view\Camera.cpp.obj.d
   FLAGS = -g -std=gnu++23
   INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
   OBJECT_DIR = CMakeFiles\doska.dir
-  OBJECT_FILE_DIR = CMakeFiles\doska.dir
+  OBJECT_FILE_DIR = CMakeFiles\doska.dir\view
 
 build CMakeFiles/doska.dir/utils/Position.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/utils/Position.cpp || cmake_object_order_depends_target_doska
   DEP_FILE = CMakeFiles\doska.dir\utils\Position.cpp.obj.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
+  OBJECT_DIR = CMakeFiles\doska.dir
+  OBJECT_FILE_DIR = CMakeFiles\doska.dir\utils
+
+build CMakeFiles/doska.dir/utils/Vector2.cpp.obj: CXX_COMPILER__doska_Debug C$:/Users/Matvey/CLionProjects/doska/utils/Vector2.cpp || cmake_object_order_depends_target_doska
+  DEP_FILE = CMakeFiles\doska.dir\utils\Vector2.cpp.obj.d
   FLAGS = -g -std=gnu++23
   INCLUDES = -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/include -IC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/include
   OBJECT_DIR = CMakeFiles\doska.dir
@@ -106,7 +113,7 @@ build CMakeFiles/doska.dir/utils/Position.cpp.obj: CXX_COMPILER__doska_Debug C$:
 #############################################
 # Link the executable doska.exe
 
-build doska.exe: CXX_EXECUTABLE_LINKER__doska_Debug CMakeFiles/doska.dir/main.cpp.obj CMakeFiles/doska.dir/map/ChunkNet.cpp.obj CMakeFiles/doska.dir/Chunk.cpp.obj CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj CMakeFiles/doska.dir/map/ChunkNode.cpp.obj CMakeFiles/doska.dir/Camera.cpp.obj CMakeFiles/doska.dir/utils/Position.cpp.obj
+build doska.exe: CXX_EXECUTABLE_LINKER__doska_Debug CMakeFiles/doska.dir/main.cpp.obj CMakeFiles/doska.dir/map/ChunkNet.cpp.obj CMakeFiles/doska.dir/Chunk.cpp.obj CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj CMakeFiles/doska.dir/map/ChunkNode.cpp.obj CMakeFiles/doska.dir/view/Camera.cpp.obj CMakeFiles/doska.dir/utils/Position.cpp.obj CMakeFiles/doska.dir/utils/Vector2.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lSDL2main  -lSDL2  -lSDL2test  -lSDL2_image  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/Matvey/CLionProjects/doska/lib/SDL2-2.0.20/lib/x64   -LC:/Users/Matvey/CLionProjects/doska/lib/SDL2_image-2.0.5/lib/x64

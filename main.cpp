@@ -1,6 +1,5 @@
 #include <iostream>
-#include <SDL.h>
-
+#include "view/Camera.h"
 int main(int argc, char** argv) {
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER)){
         std::cout << "Error initialising\n";
@@ -16,11 +15,10 @@ int main(int argc, char** argv) {
         std::cout << "Error making window\n";
         return 1;
     }
-
-    SDL_Surface* surf = SDL_GetWindowSurface(window);
-    SDL_FillRect(surf, nullptr, SDL_MapRGB(surf->format, 0, 255, 0));
-
-    SDL_UpdateWindowSurface(window);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    Camera camera(renderer);
+    camera.width = 1280;
+    camera.height = 720;
 
     SDL_Event event;
     bool running = true;
@@ -30,9 +28,17 @@ int main(int argc, char** argv) {
             case SDL_QUIT:
                 running = false;
                 break;
+            case SDL_WINDOWEVENT:
+                switch (event.window.type){
+                    case SDL_WINDOWEVENT_RESIZED:
+                        camera.width = event.window.data1;
+                        camera.height = event.window.data2;
+                        break;
+                }
+                break;
         }
     }
-
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
