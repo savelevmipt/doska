@@ -1,10 +1,8 @@
 # ninja log v5
-2260	2497	6687716462402462	doska.exe	f2598dec6acccf2d
-11	2258	6687716460102951	CMakeFiles/doska.dir/main.cpp.obj	c893b3834f2afa47
-4	220	6688226864694155	build.ninja	809182c8aa99e7ca
-3	204	6688226864694155	build.ninja	809182c8aa99e7ca
-15	118	6688226866264974	CMakeFiles/doska.dir/map/Chunk.cpp.obj	a0bc3a9185e9abff
-11	125	6688226866264974	CMakeFiles/doska.dir/map/ChunkNet.cpp.obj	47119eeb6f19423
-7	127	6688226866264974	CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj	8c7f29949df9bcd9
-4	132	6688226866421312	CMakeFiles/doska.dir/map/ChunkNode.cpp.obj	e6eb3ee8e0459e29
 133	314	6688226868144588	doska.exe	d1b7348313c1ba2d
+15	118	6688226866264974	CMakeFiles/doska.dir/map/Chunk.cpp.obj	a0bc3a9185e9abff
+7	127	6688226866264974	CMakeFiles/doska.dir/map/ChunkIterator.cpp.obj	8c7f29949df9bcd9
+11	2258	6687716460102951	CMakeFiles/doska.dir/main.cpp.obj	c893b3834f2afa47
+11	125	6688226866264974	CMakeFiles/doska.dir/map/ChunkNet.cpp.obj	47119eeb6f19423
+3	204	6693142005043892	build.ninja	809182c8aa99e7ca
+4	132	6688226866421312	CMakeFiles/doska.dir/map/ChunkNode.cpp.obj	e6eb3ee8e0459e29

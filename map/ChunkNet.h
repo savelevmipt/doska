@@ -20,9 +20,10 @@ public:
      * адреса чанков начинаются с (-net_width, -net_width) и заполняют пространство до (net_width, net_width)
      * выглядит бесполезно, поскольку есть эффективный итератор
      */
-     ChunkNode* getChunk(int x, int y);
+     ChunkNode* getChunk(int x, int y) const;
      /*
       * getRect - возвращает область, которая адресуется net
+      * преобразует net_width в ChunkRect;
       * */
      ChunkRect getRect() const;
 

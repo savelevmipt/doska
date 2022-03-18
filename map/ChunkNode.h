@@ -4,7 +4,8 @@
 #ifndef DOSKA_CHUNKNET_H
 #define DOSKA_CHUNKNET_H
 
-#include "Chunk.h"
+class Chunk;
+
 //ChunkRect - прямоугольный набор чанков
 #define NUM_CHUNKS 4
 struct ChunkRect{
@@ -35,6 +36,7 @@ struct ChunkRect{
  * Итерация будет происходить за O(log(w) + N), где N - количество видимых на экране, уже созданных чанков
  *
  * */
+
 struct ChunkNode {
 public:
     ChunkNode *ch[NUM_CHUNKS];

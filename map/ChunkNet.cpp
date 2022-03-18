@@ -7,7 +7,7 @@
 ChunkNet::ChunkNet():net_width(1){
     net = new ChunkNode;
 }
-ChunkNode* ChunkNet::getChunk(int x, int y){
+ChunkNode* ChunkNet::getChunk(int x, int y) const{
     ChunkRect rect = getRect();
     if(!rect.contains(x, y))
         return nullptr;
