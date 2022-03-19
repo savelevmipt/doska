@@ -13,62 +13,72 @@ void Camera::translate(int d_screen_x, int d_screen_y){
     pos.floor();
 }
 void Camera::zoom(int screen_x, int screen_y, double wheel){
-    Vector2 screen(width / 2. - screen_x, screen_y - height / 2.);
+    Vector2 screen(screen_x - width / 2., height / 2. - screen_y);
     Vector2 delta = screen * (1 / scale);
 
-    scale /= wheel;
+    scale *= pow(1.1, wheel);//1.1 - множитель скорости увеличения
 
-    pos.flop += screen * (1 / scale) + delta;
+    pos.flop += -screen * (1 / scale) + delta;
     pos.floor();
 }
 
-Position Camera::getPosition(int screen_x, int screen_y){
-    Vector2 screen(width / 2. - screen_x, screen_y - height / 2.);
-    //TODO
+void Camera::setSize(int _width, int _height){
+    width = _width;
+    height = _height;
+    half_scr.set(_width / 2., _height / 2.);
 }
 
-void Camera::drawLine(const Position& start, const Vector2& delta) {
-    Vector2 p = (start - pos).toFlo();
-
-    Vector2 start_fp = p * scale;
-    Vector2 end_fp = start_fp + delta * scale;
-    SDL_RenderDrawLineF(renderer, (float)start_fp.x, (float)height - (float)start_fp.y, (float)end_fp.x, (float)height - (float)end_fp.y);
+Position Camera::getPosition(int screen_x, int screen_y) const{
+    Vector2 screen(screen_x - width / 2., height / 2. - screen_y);
+    Position p({0, 0}, screen * (1 / scale));
+    p += pos;
+    p.floor();
+    return p;
 }
 
+void Camera::drawLine(const Vector2& start, const Vector2& delta) {
+    Vector2 start_fp = start * scale;//
+    start_fp.y = -start_fp.y;
+    start_fp += half_scr;
+    Vector2 end_fp = delta * scale;
+    end_fp.y = -end_fp.y;
+    end_fp += start_fp;
+    SDL_RenderDrawLineF(renderer, (float)start_fp.x, (float)start_fp.y, (float)end_fp.x, (float)end_fp.y);
+}
+void Camera::drawRect(const Vector2& start, const Vector2& delta){
+    Vector2 start_fp = start * scale;//
+    start_fp.y = -start_fp.y;
+    start_fp += half_scr;
+    Vector2 size = delta * scale;
+    start_fp.y -= size.y;
+    SDL_FRect rect{(float)start_fp.x, (float)start_fp.y, (float)size.x, (float)size.y};
+    SDL_RenderDrawRectF(renderer, &rect);
+}
 void Camera::renderAll(){
     {//инициализация итератора
-        Vector2 half_screen = Vector2(width / 2., height / 2.) * (1 / scale);
+        Position lbp = pos - half_scr * (1 / scale);//left bottom corner position
+        Position rtp = pos + half_scr * (1 / scale);//right top corner position
 
-        Position lbp = pos - half_screen;//left bottom corner position
-        Position rtp = pos + half_screen;//right top corner position
-
-        lbp.ceil();
+        lbp.floor();
         rtp.ceil();
         IntPosition delta = rtp.intp - lbp.intp;
 
         iter.setBounds(lbp.intp.x, lbp.intp.y, delta.x, delta.y);
     }
+    SDL_SetRenderDrawColor(renderer, 255,  255, 255, 255);
+    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+    drawRect(-Vector2(net.net_width, net.net_width) * 0.8 - pos.toFlo(),
+             Vector2(net.net_width, net.net_width) * 1.6);
 
     //отрисовка
-    while(iter.next()){
-        Chunk* c = iter.getChunk();
+    while(iter.nextNode()){
         IntPosition curr = {iter.getX(), iter.getY()};
-
+        Vector2 size(iter.getW(), iter.getH());
         //нарисуем просто квадрат для каждого чанка
-        Position start(curr, Vector2(0.2, 0.2));
-        Vector2 end(0.2, 0.8);
-        drawLine(start, end);
-
-        start.flop.set(end);
-        end.set(0.8, 0.8);
-        drawLine(start, end);
-
-        start.flop.set(end);
-        end.set(0.8, 0.2);
-        drawLine(start, end);
-
-        start.flop.set(end);
-        end.set(0.2, 0.2);
-        drawLine(start, end);
+        Vector2 c_s = -(pos - curr).toFlo();//координата начала чанка
+        drawRect(c_s + size * 0.1, size * 0.8);
     }
+    SDL_RenderPresent(renderer);
 }

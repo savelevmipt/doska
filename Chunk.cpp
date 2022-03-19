@@ -3,3 +3,6 @@
 //
 
 #include "Chunk.h"
+Chunk* Chunk_constructor(){
+    return new Chunk();
+}

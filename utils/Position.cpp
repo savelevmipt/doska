@@ -69,3 +69,18 @@ Position& operator-=(Position& a, const Vector2& b){
     a.flop -= b;
     return a;
 }
+
+Position operator+(const Position& a, const IntPosition& b){
+    return {a.intp + b, a.flop};
+}
+Position operator-(const Position& a, const IntPosition& b){
+    return {a.intp - b, a.flop};
+}
+Position& operator+=(Position& a, const IntPosition& b){
+    a.intp += b;
+    return a;
+}
+Position& operator-=(Position& a, const IntPosition& b){
+    a.intp -= b;
+    return a;
+}

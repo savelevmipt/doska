@@ -10,6 +10,7 @@ class Chunk;
 #define NUM_CHUNKS 4
 struct ChunkRect{
     int ox, oy, w, h;
+
     //ненулевое ли пересечение двух наборов?
     bool intersects(ChunkRect oth) const;
     bool contains(int x, int y) const;
@@ -39,6 +40,7 @@ struct ChunkRect{
 
 struct ChunkNode {
 public:
+
     ChunkNode *ch[NUM_CHUNKS];
 
     ChunkNode *parent = nullptr;
@@ -46,7 +48,8 @@ public:
 
     Chunk *chunk = nullptr;
 
-    ChunkNode();
+    ChunkNode(int parent_idx, ChunkNode* parent);
+    void setPar(int parent_idx, ChunkNode* parent);
 };
 
 

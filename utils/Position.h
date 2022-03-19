@@ -46,4 +46,8 @@ Position operator+(const Position& a, const Vector2& b);
 Position operator-(const Position& a, const Vector2& b);
 Position& operator+=(Position& a, const Vector2& b);
 Position& operator-=(Position& a, const Vector2& b);
+Position operator+(const Position& a, const IntPosition& b);
+Position operator-(const Position& a, const IntPosition& b);
+Position& operator+=(Position& a, const IntPosition& b);
+Position& operator-=(Position& a, const IntPosition& b);
 #endif //DOSKA_POSITION_H

@@ -9,6 +9,6 @@
 class Chunk {
     //TODO
 };
-
+Chunk* Chunk_constructor();
 
 #endif //DOSKA_CHUNK_H

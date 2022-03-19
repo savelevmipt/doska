@@ -46,6 +46,13 @@ public:
     Chunk* getChunk() const;
     int getX() const;
     int getY() const;
+
+    ///////////////////
+    // Для итерирования по всему дереву, не полько по чанкам
+    bool _goDown;
+    bool nextNode();
+    int getW() const;
+    int getH() const;
 };
 
 
