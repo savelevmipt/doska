@@ -24,8 +24,12 @@ private:
 public:
     Position pos; //координата точки доски, находящейся в центре экрана
     double scale; //количество пикселей экрана, находящиеся в 1 чанке (размер чанка - 1)
-
     Doska2& doska2;
+
+    //
+    Position sel_start;
+    Position sel_end;
+    bool has_sel = false;
 
     /* Создание: создать обьект, подав renderer,
      * Установить size,

@@ -36,12 +36,16 @@ int main(int argc, char** argv) {
                 break;
             case SDL_KEYDOWN: {
                 switch(event.key.keysym.scancode){
-                    case SDL_SCANCODE_D: {
+                    case SDL_SCANCODE_A: {
                         state.key_state = STATE_DRAW;
                         break;
                     }
-                    case SDL_SCANCODE_A: {
+                    case SDL_SCANCODE_S: {
                         state.key_state = STATE_MOVE;
+                        break;
+                    }
+                    case SDL_SCANCODE_D: {
+                        state.key_state = STATE_DELETE;
                         break;
                     }
                     default:
@@ -57,12 +61,22 @@ int main(int argc, char** argv) {
                 state.has_last_state = true;
                 if(event.button.button == 1) {
                     state.left_pressed = true;
+                    if(state.key_state == STATE_DELETE) {
+                        camera.has_sel = true;
+                        camera.sel_start = camera.getPosition(state.x, state.y);
+                        camera.sel_end = camera.getPosition(state.x, state.y);
+                    }
                 }
                 break;
             case SDL_MOUSEBUTTONUP: {
                 state.has_last_state = true;
-                if (event.button.button == 1)
+                if (event.button.button == 1) {
                     state.left_pressed = false;
+                    if (state.key_state == STATE_DELETE) {
+                        camera.has_sel = false;
+                        doska.deleteVolume(camera.sel_start, camera.sel_end);
+                    }
+                }
                 break;
             }
             case SDL_MOUSEWHEEL:
@@ -76,13 +90,20 @@ int main(int argc, char** argv) {
                     state.has_last_state = true;
                     break;
                 }
-                if (state.left_pressed){
-                    if(state.key_state == STATE_MOVE)
+                if (!state.left_pressed) {
+                    break;
+                }
+                switch(state.key_state){
+                    case STATE_MOVE:
                         camera.translate(dx, dy);
-                    else if(state.key_state == STATE_DRAW){
+                        break;
+                    case STATE_DRAW:
                         doska.addLine(camera.getPosition(state.x - dx, state.y - dy),
                                       camera.getPosition(state.x, state.y));
-                    }
+                        break;
+                    case STATE_DELETE:
+                        camera.sel_end = camera.getPosition(state.x, state.y);
+                        break;
                 }
                 break;
             }

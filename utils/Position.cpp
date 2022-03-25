@@ -23,7 +23,7 @@ IntPosition& operator-=(IntPosition& a, IntPosition b){
     return a;
 }
 
-
+Position::Position():intp(0, 0) {}
 Position::Position(const IntPosition& intp, const Vector2& flop):intp(intp), flop(flop) {}
 Position::Position(int x, int y, float fx, float fy):intp(x, y), flop(fx, fy) {}
 void Position::floor(){
@@ -38,6 +38,36 @@ void Position::ceil(){
 }
 Vector2 Position::toFlo() const {
     return {intp.x + flop.x, intp.y + flop.y};
+}
+void Position::buildRectWith(Position &rtp) {
+    if(intp.x > rtp.intp.x || intp.x == rtp.intp.x && flop.x >= rtp.flop.x){
+        int i = intp.x;
+        intp.x = rtp.intp.x;
+        rtp.intp.x = i;
+        double d = flop.x;
+        flop.x = rtp.flop.x;
+        rtp.flop.x = d;
+    }
+    if(intp.y > rtp.intp.y || intp.y == rtp.intp.y && flop.y >= rtp.flop.y){
+        int i = intp.y;
+        intp.y = rtp.intp.y;
+        rtp.intp.y = i;
+        double d = flop.y;
+        flop.y = rtp.flop.y;
+        rtp.flop.y = d;
+    }
+}
+bool Position::liesInside(const Position& rtp, const Position& lbp) const{
+    if(!(intp.x > lbp.intp.x || intp.x == lbp.intp.x && flop.x >= lbp.flop.x))
+        return false;
+    if(!(intp.y > lbp.intp.y || intp.y == lbp.intp.y && flop.y >= lbp.flop.y))
+        return false;
+    if(!(intp.x < rtp.intp.x || intp.x == rtp.intp.x && flop.x <= rtp.flop.x))
+        return false;
+    if(!(intp.y < rtp.intp.y || intp.y == rtp.intp.y && flop.y <= rtp.flop.y))
+        return false;
+    return true;
+
 }
 Position operator+(const Position& a, const Position& b){
     return {a.intp + b.intp, a.flop + b.flop};

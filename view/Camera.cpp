@@ -5,7 +5,6 @@
 #include "Camera.h"
 Camera::Camera(SDL_Renderer* renderer, Doska2& doska):
 scale(500), doska2(doska),
-pos(0, 0, 0, 0),
 width(0), height(0), renderer(renderer){}
 
 void Camera::translate(int d_screen_x, int d_screen_y){
@@ -73,5 +72,10 @@ void Camera::renderAll(){
         for(auto &l: c->lines)
             drawLine(c_s + l.start, l.end - l.start);
     }
+
+    if(has_sel){
+        drawRect((sel_start - pos).toFlo(), (sel_end - sel_start).toFlo());
+    }
+
     SDL_RenderPresent(renderer);
 }

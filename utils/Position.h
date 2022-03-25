@@ -32,10 +32,13 @@ struct Position{
     Vector2 flop;
     IntPosition intp;
 
+    Position();
     Position(const IntPosition& intp, const Vector2& flop);
     Position(int x, int y, float fx, float fy);
     void floor();
     void ceil();
+    void buildRectWith(Position& oth);
+    bool liesInside(const Position& rtp, const Position& lbp) const;
     Vector2 toFlo() const;
 };
 Position operator+(const Position& a, const Position& b);
@@ -50,4 +53,5 @@ Position operator+(const Position& a, const IntPosition& b);
 Position operator-(const Position& a, const IntPosition& b);
 Position& operator+=(Position& a, const IntPosition& b);
 Position& operator-=(Position& a, const IntPosition& b);
+
 #endif //DOSKA_POSITION_H

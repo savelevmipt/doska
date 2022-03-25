@@ -16,14 +16,15 @@ public:
     /*
     * конструктор создает пустую таблицу
     */
-   Doska2();
+   Doska2() = default;
 
    //деструктор удаляет все чанки
    ~Doska2();
-
+   //возвращяет итератор по набору задетых чанков, rtp, lbp - правый верхний и левый нижний углы прамоугольника
+   //если это не так, воспользуйтесь методом buildRectWith класса Position
    ChunkIterator select(Position rtp, Position lbp);
    void addLine(const Position& begin, const Position& end);
-   void deleteVolume(Position begin, Position end);
+   void deleteVolume(const Position& begin, const Position& end);
 };
 
 

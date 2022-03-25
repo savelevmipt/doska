@@ -7,8 +7,9 @@
 //структура для хранения текущего положения мыши, нажатых клавиш и состояния курсора ()
 #define STATE_MOVE 0
 #define STATE_DRAW 1
+#define STATE_DELETE 2
 struct MouseState{
-    int x = 0, y = 0, st_x, st_y;
+    int x = 0, y = 0, st_x = 0, st_y = 0;
     int key_state = 0;
 
     bool has_last_state = false;
