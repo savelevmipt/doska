@@ -3,8 +3,8 @@
 //
 
 #include "Camera.h"
-Camera::Camera(SDL_Renderer* renderer):
-scale(100), net(), iter(net),
+Camera::Camera(SDL_Renderer* renderer, Doska2& doska):
+scale(500), doska2(doska),
 pos(0, 0, 0, 0),
 width(0), height(0), renderer(renderer){}
 
@@ -55,30 +55,23 @@ void Camera::drawRect(const Vector2& start, const Vector2& delta){
     SDL_RenderDrawRectF(renderer, &rect);
 }
 void Camera::renderAll(){
-    {//инициализация итератора
-        Position lbp = pos - half_scr * (1 / scale);//left bottom corner position
-        Position rtp = pos + half_scr * (1 / scale);//right top corner position
+    ChunkIterator iter = doska2.select(pos + half_scr * (1 / scale), pos - half_scr * (1 / scale));
 
-        lbp.floor();
-        rtp.ceil();
-        IntPosition delta = rtp.intp - lbp.intp;
-
-        iter.setBounds(lbp.intp.x, lbp.intp.y, delta.x, delta.y);
-    }
     SDL_SetRenderDrawColor(renderer, 255,  255, 255, 255);
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
-    drawRect(-Vector2(net.net_width, net.net_width) * 0.8 - pos.toFlo(),
-             Vector2(net.net_width, net.net_width) * 1.6);
-
     //отрисовка
-    while(iter.nextNode()){
+    while(iter.next()){
         IntPosition curr = {iter.getX(), iter.getY()};
-        Vector2 size(iter.getW(), iter.getH());
-        //нарисуем просто квадрат для каждого чанка
+        Vector2 size(1, 1);
+        //нарисуем квадрат для каждого чанка
         Vector2 c_s = -(pos - curr).toFlo();//координата начала чанка
-        drawRect(c_s + size * 0.1, size * 0.8);
+        drawRect(c_s + size * 0.02, size * 0.96);
+
+        //отрисуем линии
+        Chunk* c = iter.getChunk();
+        for(auto &l: c->lines)
+            drawLine(c_s + l.start, l.end - l.start);
     }
     SDL_RenderPresent(renderer);
 }

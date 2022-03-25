@@ -19,7 +19,14 @@ endif ()
 
 
 
-add_executable(doska main.cpp map/ChunkNet.cpp map/ChunkNet.h map/ChunkNode.h Chunk.cpp Chunk.h map/ChunkIterator.cpp map/ChunkIterator.h map/ChunkNode.cpp view/Camera.cpp view/Camera.h utils/Position.cpp utils/Position.h utils/Vector2.cpp utils/Vector2.h MouseState.h)
+add_executable(doska
+        main.cpp MouseState.h
+        map/ChunkNet.cpp map/ChunkNet.h map/ChunkNode.h
+        map/ChunkIterator.cpp map/ChunkIterator.h map/ChunkNode.cpp
+        model/Chunk.cpp model/Chunk.h
+        view/Camera.cpp view/Camera.h
+        utils/Position.cpp utils/Position.h utils/Vector2.cpp utils/Vector2.h
+        model/Doska2.cpp model/Doska2.h model/Line.h)
 
 
 if(WIN32)

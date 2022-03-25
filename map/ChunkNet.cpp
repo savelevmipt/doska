@@ -7,6 +7,9 @@
 ChunkNet::ChunkNet():net_width(1){
     net = new ChunkNode(-1, nullptr);
 }
+ChunkNet::~ChunkNet(){
+    delete net;
+}
 void ChunkNet::tableExpand(){
     net_width *= 2;
     ChunkNode *ch;
@@ -126,4 +129,22 @@ Chunk* ChunkNet::rmChunk(int x, int y) {
 }
 ChunkRect ChunkNet::getRect() const {
     return ChunkRect{-net_width, -net_width, 2 * net_width, 2 * net_width};
+}
+
+void freeNode(ChunkNode* node, void delete_chunk(Chunk* chunk)){
+    if(node->chunk != nullptr)
+        delete_chunk(node->chunk);
+    else{
+        for(auto & i : node->ch){
+            if(i != nullptr){
+                freeNode(i, delete_chunk);
+                delete i;
+            }
+        }
+    }
+}
+void ChunkNet::free(void delete_chunk(Chunk* chunk)) const{
+    freeNode(net, delete_chunk);
+    for(auto & i : net->ch)
+        i = nullptr;
 }

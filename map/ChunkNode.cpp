@@ -59,11 +59,10 @@ int ChunkRect::getChildIdx(int x, int y) const {
 }
 
 ChunkNode::ChunkNode(int parent_idx, ChunkNode* parent):parent_idx(parent_idx), parent(parent) {
-    ch[0] = nullptr;
-    ch[1] = nullptr;
-    ch[2] = nullptr;
-    ch[3] = nullptr;
+    for(auto & i : ch)
+        i = nullptr;
 }
+
 void ChunkNode::setPar(int _parent_idx, ChunkNode *_parent) {
     parent_idx = _parent_idx;
     parent = _parent;

@@ -2,7 +2,7 @@
 #include "view/Camera.h"
 #include "MouseState.h"
 int main(int argc, char** argv) {
-    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER)){
+    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_HAPTIC)){
         std::cout << "Error initialising\n";
         return 1;
     }
@@ -16,7 +16,10 @@ int main(int argc, char** argv) {
         return 1;
     }
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    Camera camera(renderer);
+
+    Doska2 doska;
+    Camera camera(renderer, doska);
+
     camera.setSize(1280, 720);
 
     MouseState state;
@@ -24,60 +27,65 @@ int main(int argc, char** argv) {
     SDL_Event event;
     bool running = true;
     while(running){
-        if(!SDL_PollEvent(&event))
+        while(!SDL_PollEvent(&event))
             camera.renderAll();
+
         switch(event.type){
             case SDL_QUIT:
                 running = false;
                 break;
-            case SDL_WINDOWEVENT:
-                switch (event.window.type){
-                    case SDL_WINDOWEVENT_RESIZED:
-                        camera.setSize(event.window.data1, event.window.data2);
+            case SDL_KEYDOWN: {
+                switch(event.key.keysym.scancode){
+                    case SDL_SCANCODE_D: {
+                        state.key_state = STATE_DRAW;
+                        break;
+                    }
+                    case SDL_SCANCODE_A: {
+                        state.key_state = STATE_MOVE;
+                        break;
+                    }
+                    default:
                         break;
                 }
                 break;
+            }
             case SDL_MOUSEBUTTONDOWN:
                 state.x = event.motion.x;
                 state.y = event.motion.y;
+                state.st_x = state.x;
+                state.st_y = state.y;
                 state.has_last_state = true;
                 if(event.button.button == 1) {
                     state.left_pressed = true;
-                }else if(event.button.button == 3) {
-                    state.right_pressed = true;
-                    Position p = camera.getPosition(state.x, state.y);
-                    Chunk* c = camera.net.getChunk(p.intp.x, p.intp.y);
-                    if(c == nullptr){
-                        camera.net.getNewChunk(p.intp.x, p.intp.y, Chunk_constructor);
-                    }else{
-                        camera.net.rmChunk(p.intp.x, p.intp.y);
-                        delete c;
-                    }
                 }
                 break;
-            case SDL_MOUSEBUTTONUP:
-                state.x = event.motion.x;
-                state.y = event.motion.y;
+            case SDL_MOUSEBUTTONUP: {
                 state.has_last_state = true;
-                if(event.button.button == 1)
+                if (event.button.button == 1)
                     state.left_pressed = false;
-                else if(event.button.button == 3)
-                    state.right_pressed = false;
                 break;
+            }
             case SDL_MOUSEWHEEL:
                 camera.zoom(state.x, state.y, event.wheel.preciseY);
                 break;
-            case SDL_MOUSEMOTION:
+            case SDL_MOUSEMOTION: {
                 int dx = event.motion.x - state.x, dy = event.motion.y - state.y;
                 state.x = event.motion.x;
                 state.y = event.motion.y;
-                if(!state.has_last_state) {
+                if (!state.has_last_state) {
                     state.has_last_state = true;
                     break;
                 }
-                if(state.left_pressed)
-                    camera.translate(dx, dy);
+                if (state.left_pressed){
+                    if(state.key_state == STATE_MOVE)
+                        camera.translate(dx, dy);
+                    else if(state.key_state == STATE_DRAW){
+                        doska.addLine(camera.getPosition(state.x - dx, state.y - dy),
+                                      camera.getPosition(state.x, state.y));
+                    }
+                }
                 break;
+            }
         }
     }
     SDL_DestroyRenderer(renderer);

@@ -6,3 +6,6 @@
 Chunk* Chunk_constructor(){
     return new Chunk();
 }
+void Chunk_destructor(Chunk* chunk){
+    delete chunk;
+}

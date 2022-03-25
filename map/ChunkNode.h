@@ -40,7 +40,6 @@ struct ChunkRect{
 
 struct ChunkNode {
 public:
-
     ChunkNode *ch[NUM_CHUNKS];
 
     ChunkNode *parent = nullptr;

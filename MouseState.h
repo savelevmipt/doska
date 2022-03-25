@@ -5,12 +5,15 @@
 #ifndef DOSKA_MOUSESTATE_H
 #define DOSKA_MOUSESTATE_H
 //структура для хранения текущего положения мыши, нажатых клавиш и состояния курсора ()
+#define STATE_MOVE 0
+#define STATE_DRAW 1
 struct MouseState{
-    int x = 0, y = 0;
+    int x = 0, y = 0, st_x, st_y;
     int key_state = 0;
 
     bool has_last_state = false;
     bool left_pressed = false;
+    unsigned left_down_time = 0;
     bool right_pressed = false;
 };
 

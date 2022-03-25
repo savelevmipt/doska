@@ -14,7 +14,8 @@ public:
 
     //Создать пустую сеть
     ChunkNet();
-
+    //Удалить только узел net, остальное удалено хозяевами
+    ~ChunkNet();
     /* getNewChunk() - Найти 1 чанк по адресу (x, y) и вернуть его.
      * если его адрес отсутствует в сетке, то расширить сетку
      * если чанк еще не создан, то создать функцией make_new()
@@ -36,6 +37,11 @@ public:
       * преобразует net_width в ChunkRect;
       * */
      ChunkRect getRect() const;
+
+     /*
+      * free - удалить все чанки дерева - очистить сеть
+      */
+     void free(void delete_chunk(Chunk* chunk)) const;
 private:
     //Расширить таблицу в 2 раза по каждой координате
     void tableExpand();

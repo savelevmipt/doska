@@ -5,9 +5,7 @@
 #ifndef DOSKA_CAMERA_H
 #define DOSKA_CAMERA_H
 #include "SDL.h"
-#include "../utils/Position.h"
-#include "../map/ChunkIterator.h"
-#include "../Chunk.h"
+#include "../model/Doska2.h"
 /*
  * Структура, которая будет хранить все данные о доске и позицию камеры
  * Отрисовывает на экране элементы доски
@@ -27,15 +25,13 @@ public:
     Position pos; //координата точки доски, находящейся в центре экрана
     double scale; //количество пикселей экрана, находящиеся в 1 чанке (размер чанка - 1)
 
-    ChunkNet net;
-
-    ChunkIterator iter;
+    Doska2& doska2;
 
     /* Создание: создать обьект, подав renderer,
      * Установить size,
      * по желанию установить scale и pos
      * */
-    Camera(SDL_Renderer *renderer);
+    Camera(SDL_Renderer *renderer, Doska2& doska);
 
     void setSize(int _width, int _height);
 
