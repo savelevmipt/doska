@@ -24,6 +24,9 @@ private:
 public:
     Position pos; //координата точки доски, находящейся в центре экрана
     double scale; //количество пикселей экрана, находящиеся в 1 чанке (размер чанка - 1)
+    int cells; // количество клеточек в чанке, 2^x для простоты
+    int pixel_per_line;
+
     Doska2& doska2;
 
     //
@@ -53,6 +56,8 @@ public:
     void drawLine(const Vector2& start, const Vector2& delta);
 
     void drawRect(const Vector2& start, const Vector2& size);
+private:
+    void drawCells();
 };
 
 

@@ -4,7 +4,7 @@
 
 #include "Camera.h"
 Camera::Camera(SDL_Renderer* renderer, Doska2& doska):
-scale(500), doska2(doska),
+scale(500), cells(16), pixel_per_line(5), doska2(doska),
 width(0), height(0), renderer(renderer){}
 
 void Camera::translate(int d_screen_x, int d_screen_y){
@@ -53,11 +53,36 @@ void Camera::drawRect(const Vector2& start, const Vector2& delta){
     SDL_FRect rect{(float)start_fp.x, (float)start_fp.y, (float)size.x, (float)size.y};
     SDL_RenderDrawRectF(renderer, &rect);
 }
+void Camera::drawCells(){
+    double curr_cells = cells;
+    while(scale < curr_cells * pixel_per_line && curr_cells != 1){
+        curr_cells /= 2;
+    }
+
+    Vector2 hs = half_scr * (1 / scale);
+    Vector2 start(pos.flop - hs); // start = floor(pos - hs) - pos
+    start.set(floor(start.x), floor(start.y));
+    start -= pos.flop;
+    Vector2 end(pos.flop + hs);//end = ceil(pos + hs) - pos
+    end.set(ceil(end.x), ceil(end.y));
+    end -= pos.flop;
+    Vector2 size = (end - start) * curr_cells;
+    int size_x = (int)size.x;
+    int size_y = (int)size.y;
+    Vector2 x_delta(0, end.y - start.y);
+    Vector2 y_delta(end.x - start.x, 0);
+    for(int i = 0; i <= size_x; ++i)
+        drawLine(start + Vector2(i / curr_cells, 0), x_delta);
+    for(int i = 0; i <= size_y; ++i)
+        drawLine(start + Vector2(0, i / curr_cells), y_delta);
+}
 void Camera::renderAll(){
     ChunkIterator iter = doska2.select(pos + half_scr * (1 / scale), pos - half_scr * (1 / scale));
 
     SDL_SetRenderDrawColor(renderer, 255,  255, 255, 255);
     SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
+    drawCells();
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     //отрисовка
     while(iter.next()){

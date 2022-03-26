@@ -31,7 +31,10 @@ void Doska2::deleteVolume(const Position& begin, const Position& end){
     while(iter.next()){
         Chunk* c = iter.getChunk();
         Position p({iter.getX(), iter.getY()}, {0, 0});
-//        if(p.liesInside(rtp, lbp) && (p + IntPosition(1, 1)).liesInside(rtp, lbp))
+        if(p.liesInside(rtp, lbp) && (p + IntPosition(1, 1)).liesInside(rtp, lbp)){
+            chunk_to_delete.push_back(p.intp);
+            continue;
+        }
         for(int i = (int)c->lines.size() - 1; i >= 0; --i){
             Position p2 = p;
             p2.flop = c->lines[i].start;
