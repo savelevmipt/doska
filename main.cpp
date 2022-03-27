@@ -1,8 +1,8 @@
 #include <iostream>
 #include "view/Camera.h"
-#include "MouseState.h"
+#include "selectors/MouseState.h"
 int main(int argc, char** argv) {
-    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_HAPTIC)){
+    if(SDL_Init(SDL_INIT_VIDEO)){
         std::cout << "Error initialising\n";
         return 1;
     }
@@ -22,8 +22,7 @@ int main(int argc, char** argv) {
 
     camera.setSize(1280, 720);
 
-    MouseState state;
-
+    MouseState state(camera);
     SDL_Event event;
     bool running = true;
     while(running){
@@ -34,10 +33,18 @@ int main(int argc, char** argv) {
             case SDL_QUIT:
                 running = false;
                 break;
+            case SDL_WINDOWEVENT: {
+                switch(event.window.event) {
+                    case SDL_WINDOWEVENT_SIZE_CHANGED:
+                        camera.setSize(event.window.data1, event.window.data2);
+                        break;
+                }
+                break;
+            }
             case SDL_KEYDOWN: {
                 switch(event.key.keysym.scancode){
                     case SDL_SCANCODE_A: {
-                        state.key_state = STATE_DRAW;
+                        state.key_state = STATE_DRAW_LINE;
                         break;
                     }
                     case SDL_SCANCODE_S: {
@@ -48,33 +55,30 @@ int main(int argc, char** argv) {
                         state.key_state = STATE_DELETE;
                         break;
                     }
+                    case SDL_SCANCODE_R:{
+                        state.key_state = STATE_DRAW_RECT;
+                        break;
+                    }
                     default:
                         break;
                 }
                 break;
             }
             case SDL_MOUSEBUTTONDOWN:
-                state.x = event.motion.x;
-                state.y = event.motion.y;
-                state.st_x = state.x;
-                state.st_y = state.y;
-                state.has_last_state = true;
+                state.x = event.button.x;
+                state.y = event.button.y;
                 if(event.button.button == 1) {
                     state.left_pressed = true;
-                    if(state.key_state == STATE_DELETE) {
-                        camera.has_sel = true;
-                        camera.sel_start = camera.getPosition(state.x, state.y);
-                        camera.sel_end = camera.getPosition(state.x, state.y);
-                    }
+                    camera.selector = state.selectors[state.key_state];
+                    camera.selector->begin(camera.getPosition(state.x, state.y));
                 }
                 break;
             case SDL_MOUSEBUTTONUP: {
-                state.has_last_state = true;
                 if (event.button.button == 1) {
                     state.left_pressed = false;
-                    if (state.key_state == STATE_DELETE) {
-                        camera.has_sel = false;
-                        doska.deleteVolume(camera.sel_start, camera.sel_end);
+                    if(camera.selector != nullptr){
+                        camera.selector->finish();
+                        camera.selector = nullptr;
                     }
                 }
                 break;
@@ -83,28 +87,12 @@ int main(int argc, char** argv) {
                 camera.zoom(state.x, state.y, event.wheel.preciseY);
                 break;
             case SDL_MOUSEMOTION: {
-                int dx = event.motion.x - state.x, dy = event.motion.y - state.y;
                 state.x = event.motion.x;
                 state.y = event.motion.y;
-                if (!state.has_last_state) {
-                    state.has_last_state = true;
+                if (!state.left_pressed)
                     break;
-                }
-                if (!state.left_pressed) {
-                    break;
-                }
-                switch(state.key_state){
-                    case STATE_MOVE:
-                        camera.translate(dx, dy);
-                        break;
-                    case STATE_DRAW:
-                        doska.addLine(camera.getPosition(state.x - dx, state.y - dy),
-                                      camera.getPosition(state.x, state.y));
-                        break;
-                    case STATE_DELETE:
-                        camera.sel_end = camera.getPosition(state.x, state.y);
-                        break;
-                }
+                if(camera.selector != nullptr)
+                    camera.selector->update(camera.getPosition(state.x, state.y));
                 break;
             }
         }

@@ -20,13 +20,13 @@ endif ()
 
 
 add_executable(doska
-        main.cpp MouseState.h
+        main.cpp selectors/MouseState.h
         map/ChunkNet.cpp map/ChunkNet.h map/ChunkNode.h
         map/ChunkIterator.cpp map/ChunkIterator.h map/ChunkNode.cpp
         model/Chunk.cpp model/Chunk.h
         view/Camera.cpp view/Camera.h
         utils/Position.cpp utils/Position.h utils/Vector2.cpp utils/Vector2.h
-        model/Doska2.cpp model/Doska2.h model/Line.h)
+        model/Doska2.cpp model/Doska2.h model/Line.h selectors/Selector.cpp selectors/Selector.h selectors/CurveDrawer.cpp selectors/CurveDrawer.h selectors/CamMover.cpp selectors/CamMover.h selectors/Deleter.cpp selectors/Deleter.h selectors/MouseState.cpp selectors/RectDrawer.cpp selectors/RectDrawer.h)
 
 
 if(WIN32)

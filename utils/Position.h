@@ -34,7 +34,7 @@ struct Position{
 
     Position();
     Position(const IntPosition& intp, const Vector2& flop);
-    Position(int x, int y, float fx, float fy);
+    Position(int x, int y, double fx, double fy);
     void floor();
     void ceil();
     void buildRectWith(Position& oth);

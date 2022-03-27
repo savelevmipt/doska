@@ -6,6 +6,7 @@
 #define DOSKA_CAMERA_H
 #include "SDL.h"
 #include "../model/Doska2.h"
+#include "../selectors/Selector.h"
 /*
  * Структура, которая будет хранить все данные о доске и позицию камеры
  * Отрисовывает на экране элементы доски
@@ -30,9 +31,7 @@ public:
     Doska2& doska2;
 
     //
-    Position sel_start;
-    Position sel_end;
-    bool has_sel = false;
+    Selector* selector;
 
     /* Создание: создать обьект, подав renderer,
      * Установить size,
@@ -42,8 +41,6 @@ public:
 
     void setSize(int _width, int _height);
 
-    //переместить камеру (подается перемещение мыши по экрану)
-    void translate(int d_screen_x, int d_screen_y);
     //приблизить/отдалить камеру, сохраняя положение заданной точки доски на экране
     void zoom(int screen_x, int screen_y, double wheel);
 

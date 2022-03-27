@@ -5,19 +5,15 @@
 #include "Camera.h"
 Camera::Camera(SDL_Renderer* renderer, Doska2& doska):
 scale(500), cells(16), pixel_per_line(5), doska2(doska),
-width(0), height(0), renderer(renderer){}
+width(0), height(0), renderer(renderer), selector(nullptr){}
 
-void Camera::translate(int d_screen_x, int d_screen_y){
-    pos.flop += Vector2(-d_screen_x, d_screen_y) * (1 / scale);
-    pos.floor();
-}
 void Camera::zoom(int screen_x, int screen_y, double wheel){
     Vector2 screen(screen_x - width / 2., height / 2. - screen_y);
     Vector2 delta = screen * (1 / scale);
 
-    scale *= pow(1.1, wheel);//1.1 - множитель скорости увеличения
+    scale *= 1 + wheel / 10; //10 - множитель скорости увеличения
 
-    pos.flop += -screen * (1 / scale) + delta;
+    pos.flop += delta - screen * (1 / scale);
     pos.floor();
 }
 
@@ -28,7 +24,9 @@ void Camera::setSize(int _width, int _height){
 }
 
 Position Camera::getPosition(int screen_x, int screen_y) const{
-    Vector2 screen(screen_x - width / 2., height / 2. - screen_y);
+    Vector2 screen(screen_x, screen_y);
+    screen -= half_scr;
+    screen.y = -screen.y;
     Position p({0, 0}, screen * (1 / scale));
     p += pos;
     p.floor();
@@ -98,9 +96,8 @@ void Camera::renderAll(){
             drawLine(c_s + l.start, l.end - l.start);
     }
 
-    if(has_sel){
-        drawRect((sel_start - pos).toFlo(), (sel_end - sel_start).toFlo());
-    }
+    if(selector != nullptr)
+        selector->render();
 
     SDL_RenderPresent(renderer);
 }

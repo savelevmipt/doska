@@ -25,7 +25,7 @@ IntPosition& operator-=(IntPosition& a, IntPosition b){
 
 Position::Position():intp(0, 0) {}
 Position::Position(const IntPosition& intp, const Vector2& flop):intp(intp), flop(flop) {}
-Position::Position(int x, int y, float fx, float fy):intp(x, y), flop(fx, fy) {}
+Position::Position(int x, int y, double fx, double fy):intp(x, y), flop(fx, fy) {}
 void Position::floor(){
     auto dx = (int)std::floor(flop.x), dy = (int)std::floor(flop.y);
     intp += {dx,dy};

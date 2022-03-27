@@ -23,7 +23,9 @@ public:
    //возвращяет итератор по набору задетых чанков, rtp, lbp - правый верхний и левый нижний углы прамоугольника
    //если это не так, воспользуйтесь методом buildRectWith класса Position
    ChunkIterator select(Position rtp, Position lbp);
+   //Добавить линию по координатам
    void addLine(const Position& begin, const Position& end);
+   //Удалить все объекты, пересекающиеся с данным прямоугольником
    void deleteVolume(const Position& begin, const Position& end);
 };
 
