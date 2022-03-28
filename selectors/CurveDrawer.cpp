@@ -13,6 +13,8 @@ void CurveDrawer::update(const Position& curr){
     cam.doska2.addLine(last, curr);
     last = curr;
 }
-void CurveDrawer::finish(){}
+bool CurveDrawer::finish(){
+    return true;
+}
 
 void CurveDrawer::render(){}

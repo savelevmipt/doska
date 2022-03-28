@@ -69,7 +69,8 @@ int main(int argc, char** argv) {
                 state.y = event.button.y;
                 if(event.button.button == 1) {
                     state.left_pressed = true;
-                    camera.selector = state.selectors[state.key_state];
+                    if(camera.selector == nullptr)
+                        camera.selector = state.selectors[state.key_state];
                     camera.selector->begin(camera.getPosition(state.x, state.y));
                 }
                 break;
@@ -77,14 +78,19 @@ int main(int argc, char** argv) {
                 if (event.button.button == 1) {
                     state.left_pressed = false;
                     if(camera.selector != nullptr){
-                        camera.selector->finish();
-                        camera.selector = nullptr;
+                        if(camera.selector->finish())
+                            camera.selector = nullptr;
                     }
                 }
                 break;
             }
             case SDL_MOUSEWHEEL:
-                camera.zoom(state.x, state.y, event.wheel.preciseY);
+                if(floorf(event.wheel.preciseY) == ceilf(event.wheel.preciseY) && event.wheel.preciseY != 0){
+                    camera.zoom(state.x, state.y, event.wheel.preciseY);
+                }else{
+                    camera.pos += Vector2(event.wheel.preciseX, event.wheel.preciseY) * (100 / camera.scale);
+                    camera.pos.floor();
+                }
                 break;
             case SDL_MOUSEMOTION: {
                 state.x = event.motion.x;

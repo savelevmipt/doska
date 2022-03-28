@@ -13,7 +13,7 @@ public:
 
     void begin(const Position& start) override;
     void update(const Position& curr) override;
-    void finish() override;
+    bool finish() override;
     void render() override;
 };
 

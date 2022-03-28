@@ -13,5 +13,7 @@ void CamMover::update(const Position& curr){
     cam.pos -= delta;
     cam.pos.floor();
 }
-void CamMover::finish(){}
+bool CamMover::finish(){
+    return true;
+}
 void CamMover::render(){}

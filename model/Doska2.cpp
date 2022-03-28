@@ -23,6 +23,10 @@ void Doska2::addLine(const Position& begin, const Position& end){
     Chunk* c = net.getNewChunk(begin.intp.x, begin.intp.y, Chunk_constructor);
     c->lines.push_back(l);
 }
+void Doska2::addObject(Object* object, const IntPosition& c_pos){
+    Chunk* c = net.getNewChunk(c_pos.x, c_pos.y, Chunk_constructor);
+    c->objects.push_back(object);
+}
 void Doska2::deleteVolume(const Position& begin, const Position& end){
     Position rtp = begin, lbp = end;
     lbp.buildRectWith(rtp);

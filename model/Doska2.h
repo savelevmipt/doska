@@ -25,6 +25,8 @@ public:
    ChunkIterator select(Position rtp, Position lbp);
    //Добавить линию по координатам
    void addLine(const Position& begin, const Position& end);
+
+   void addObject(Object* obj, const IntPosition& chunk);
    //Удалить все объекты, пересекающиеся с данным прямоугольником
    void deleteVolume(const Position& begin, const Position& end);
 };

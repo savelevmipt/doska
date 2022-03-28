@@ -12,8 +12,9 @@ void Deleter::begin(const Position& start){
 void Deleter::update(const Position& curr){
     last = curr;
 }
-void Deleter::finish(){
+bool Deleter::finish(){
     cam.doska2.deleteVolume(first, last);
+    return true;
 }
 void Deleter::render(){
     cam.drawRect((first - cam.pos).toFlo(), (last - first).toFlo());

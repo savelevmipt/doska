@@ -94,6 +94,9 @@ void Camera::renderAll(){
         Chunk* c = iter.getChunk();
         for(auto &l: c->lines)
             drawLine(c_s + l.start, l.end - l.start);
+        //Рисуем объекты
+        for(auto* obj: c->objects)
+            obj->render(*this, c_s);
     }
 
     if(selector != nullptr)

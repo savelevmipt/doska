@@ -26,7 +26,7 @@ add_executable(doska
         model/Chunk.cpp model/Chunk.h
         view/Camera.cpp view/Camera.h
         utils/Position.cpp utils/Position.h utils/Vector2.cpp utils/Vector2.h
-        model/Doska2.cpp model/Doska2.h model/Line.h selectors/Selector.cpp selectors/Selector.h selectors/CurveDrawer.cpp selectors/CurveDrawer.h selectors/CamMover.cpp selectors/CamMover.h selectors/Deleter.cpp selectors/Deleter.h selectors/MouseState.cpp selectors/RectDrawer.cpp selectors/RectDrawer.h)
+        model/Doska2.cpp model/Doska2.h model/Line.h selectors/Selector.cpp selectors/Selector.h selectors/CurveDrawer.cpp selectors/CurveDrawer.h selectors/CamMover.cpp selectors/CamMover.h selectors/Deleter.cpp selectors/Deleter.h selectors/MouseState.cpp selectors/RectDrawer.cpp selectors/RectDrawer.h model/Object.cpp model/Object.h model/Square.cpp model/Square.h)
 
 
 if(WIN32)

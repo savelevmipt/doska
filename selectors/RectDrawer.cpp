@@ -10,31 +10,20 @@ RectDrawer::RectDrawer(Camera &_cam) : Selector(_cam) {}
 void RectDrawer::begin(const Position &start) {
     first = start;
     last = start;
+    square = new Square;
+    square->center = first.flop;
 }
 
 void RectDrawer::update(const Position &curr) {
     last = curr;
+    square->size = (last - first).toFlo();
 }
 
-void RectDrawer::finish() {
-    first.buildRectWith(last);
-    cam.doska2.addLine(first, first + Position(
-            0, last.intp.y - first.intp.y,
-            0, last.flop.y - first.flop.y).toFlo());
-    cam.doska2.addLine(first + Position(
-                               0, last.intp.y - first.intp.y,
-                               0, last.flop.y - first.flop.y).toFlo(),
-                       last);
-    cam.doska2.addLine(last,
-                       first + Position(
-                               last.intp.x - first.intp.x, 0,
-                               last.flop.x - first.flop.x, 0).toFlo());
-    cam.doska2.addLine(first + Position(
-            last.intp.x - first.intp.x, 0,
-            last.flop.x - first.flop.x, 0).toFlo(),
-                       first);
+bool RectDrawer::finish() {
+    cam.doska2.addObject(square, first.intp);
+    return true;
 }
 
 void RectDrawer::render() {
-    cam.drawRect((first - cam.pos).toFlo(), (last - first).toFlo());
+    square->render(cam, -(cam.pos - first.intp).toFlo());
 }
