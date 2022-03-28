@@ -18,6 +18,8 @@ public:
     Object();
     virtual ~Object() = 0;
 
+    void normSize();
+
     virtual void render(Camera& cam, const Vector2& c_pos) = 0;
 };
 

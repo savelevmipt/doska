@@ -53,6 +53,7 @@ public:
     void drawLine(const Vector2& start, const Vector2& delta);
 
     void drawRect(const Vector2& start, const Vector2& size);
+    void drawRect(const Vector2& center, const Vector2& size, const Vector2& ang) const;
 private:
     void drawCells();
 };

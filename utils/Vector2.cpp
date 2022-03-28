@@ -45,6 +45,10 @@ void Vector2::rotate(const Vector2& ang) {
 void Vector2::rotate(double angle){
     rotate(Vector2(angle));
 }
+Vector2& Vector2::rotateRet(const Vector2 &ang) {
+    rotate(ang);
+    return *this;
+}
 void Vector2::norm() {
     double len = this->len();
     x /= len;

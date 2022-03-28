@@ -51,6 +51,32 @@ void Camera::drawRect(const Vector2& start, const Vector2& delta){
     SDL_FRect rect{(float)start_fp.x, (float)start_fp.y, (float)size.x, (float)size.y};
     SDL_RenderDrawRectF(renderer, &rect);
 }
+void Camera::drawRect(const Vector2& center, const Vector2& size, const Vector2& ang) const{
+    SDL_FPoint points[5];
+    Vector2 p;
+    p = center + Vector2(size.x, size.y).rotateRet(ang);
+    p *= scale;
+    p.y = -p.y;
+    p += half_scr;
+    points[0] = SDL_FPoint{(float)p.x, (float)p.y};
+    p = center + Vector2(size.x, -size.y).rotateRet(ang);
+    p *= scale;
+    p.y = -p.y;
+    p += half_scr;
+    points[1] = SDL_FPoint{(float)p.x, (float)p.y};
+    p = center + Vector2(-size.x, -size.y).rotateRet(ang);
+    p *= scale;
+    p.y = -p.y;
+    p += half_scr;
+    points[2] = SDL_FPoint{(float)p.x, (float)p.y};
+    p = center + Vector2(-size.x, size.y).rotateRet(ang);
+    p *= scale;
+    p.y = -p.y;
+    p += half_scr;
+    points[3] = SDL_FPoint{(float)p.x, (float)p.y};
+    points[4] = points[0];
+    SDL_RenderDrawLinesF(renderer, points, 5);
+}
 void Camera::drawCells(){
     double curr_cells = cells;
     while(scale < curr_cells * pixel_per_line && curr_cells != 1){

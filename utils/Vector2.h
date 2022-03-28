@@ -23,6 +23,7 @@ public:
     double vec(const Vector2& oth) const;
     void rotateBack(const Vector2& ang);
     void rotate(const Vector2& ang);
+    Vector2& rotateRet(const Vector2& ang);
     void rotate(double angle);
     void norm();
     friend Vector2 operator-(const Vector2& a);
