@@ -13,7 +13,9 @@ void Deleter::update(const Position& curr){
     last = curr;
 }
 bool Deleter::finish(){
-    cam.doska2.deleteVolume(first, last);
+    IntPosition chunk_to_save(0, 0);
+    ChunkObject* obj = cam.doska2.assemble(first, last, chunk_to_save);
+    delete obj;
     return true;
 }
 void Deleter::render(){

@@ -37,6 +37,7 @@ struct Position{
     Position(int x, int y, double fx, double fy);
     void floor();
     void ceil();
+    void div2();
     void buildRectWith(Position& oth);
     bool liesInside(const Position& rtp, const Position& lbp) const;
     Vector2 toFlo() const;

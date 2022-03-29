@@ -5,14 +5,14 @@
 #include "RectDrawer.h"
 #include "../view/Camera.h"
 
-RectDrawer::RectDrawer(Camera &_cam) : Selector(_cam), square(nullptr) {}
+RectDrawer::RectDrawer(Camera &_cam) : Selector(_cam), square(nullptr), def_angle(1, 0) {}
 
 void RectDrawer::begin(const Position &start) {
     first = start;
     last = start;
     square = new Square;
     square->center = first.flop;
-    square->ang = Vector2(M_PI / 3);
+    square->ang = def_angle;
 }
 
 void RectDrawer::update(const Position &curr) {

@@ -59,6 +59,14 @@ int main(int argc, char** argv) {
                         state.key_state = STATE_DRAW_RECT;
                         break;
                     }
+                    case SDL_SCANCODE_E:{
+                        state.key_state = STATE_COPY;
+                        break;
+                    }
+                    case SDL_SCANCODE_W:{
+                        state.key_state = STATE_RESIZE;
+                        break;
+                    }
                     default:
                         break;
                 }

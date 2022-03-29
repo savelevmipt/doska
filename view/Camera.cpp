@@ -11,7 +11,7 @@ void Camera::zoom(int screen_x, int screen_y, double wheel){
     Vector2 screen(screen_x - width / 2., height / 2. - screen_y);
     Vector2 delta = screen * (1 / scale);
 
-    scale *= 1 + wheel / 10; //10 - множитель скорости увеличения
+    scale *= 1 + wheel / 5; //5 - множитель скорости увеличения
 
     pos.flop += delta - screen * (1 / scale);
     pos.floor();
@@ -114,15 +114,9 @@ void Camera::renderAll(){
         Vector2 size(1, 1);
         //нарисуем квадрат для каждого чанка
         Vector2 c_s = -(pos - curr).toFlo();//координата начала чанка
-        drawRect(c_s + size * 0.02, size * 0.96);
+        //drawRect(c_s + Vector2(1, 1) * 0.02, Vector2(1, 1) * 0.96);
 
-        //отрисуем линии
-        Chunk* c = iter.getChunk();
-        for(auto &l: c->lines)
-            drawLine(c_s + l.start, l.end - l.start);
-        //Рисуем объекты
-        for(auto* obj: c->objects)
-            obj->render(*this, c_s);
+        iter.getChunk()->render(*this, c_s);
     }
 
     if(selector != nullptr)

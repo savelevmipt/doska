@@ -4,3 +4,4 @@
 
 #include "Selector.h"
 Selector::Selector(Camera &_cam): cam(_cam) {}
+Selector::~Selector() = default;

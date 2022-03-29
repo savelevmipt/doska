@@ -6,11 +6,13 @@
 #define DOSKA_CHUNK_H
 #include <vector>
 #include "Line.h"
-#include "Object.h"
+#include "objects/Object.h"
+class Camera;
 class Chunk {
 public:
     std::vector<Line> lines;
     std::vector<Object*> objects;
+    void render(Camera& cam, const Vector2& c_pos);
 };
 Chunk* Chunk_constructor();
 void Chunk_destructor(Chunk* chunk);

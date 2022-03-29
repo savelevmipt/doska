@@ -19,6 +19,8 @@ public:
     virtual void update(const Position& curr) = 0;
     virtual bool finish() = 0;
     virtual void render() = 0;
+
+    virtual ~Selector() = 0;
 };
 
 

@@ -39,6 +39,16 @@ void Position::ceil(){
 Vector2 Position::toFlo() const {
     return {intp.x + flop.x, intp.y + flop.y};
 }
+void Position::div2() {
+    int dx = intp.x % 2;
+    int dy = intp.y % 2;
+    intp.x /= 2;
+    intp.y /= 2;
+    flop *= 0.5;
+    flop.x += 0.5 * dx;
+    flop.y += 0.5 * dy;
+    floor();
+}
 void Position::buildRectWith(Position &rtp) {
     if(intp.x > rtp.intp.x || intp.x == rtp.intp.x && flop.x >= rtp.flop.x){
         int i = intp.x;

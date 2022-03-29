@@ -6,11 +6,12 @@
 #define DOSKA_RECTDRAWER_H
 
 #include "Selector.h"
-#include "../model/Square.h"
+#include "../model/objects/Square.h"
 
 class RectDrawer:public Selector {
 public:
     Position first, last;
+    Vector2 def_angle;
     Square* square;
     explicit RectDrawer(Camera& _cam);
 

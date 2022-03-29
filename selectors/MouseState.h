@@ -11,18 +11,22 @@
 #define STATE_DRAW_LINE 1
 #define STATE_DELETE 2
 #define STATE_DRAW_RECT 3
+#define STATE_COPY 4
+#define STATE_RESIZE 5
 
 #include "Deleter.h"
 #include "CamMover.h"
 #include "CurveDrawer.h"
 #include "RectDrawer.h"
+#include "Copyer.h"
+#include "Resizer.h"
 
 struct MouseState{
-    int x, y;
+    int x = 0, y = 0;
     int key_state;
     bool left_pressed;
 
-    Selector *selectors[4]{};
+    Selector *selectors[6]{};
     explicit MouseState(Camera& cam);
     ~MouseState();
 };
