@@ -24,6 +24,8 @@ public:
     virtual void render(Camera& cam, const Vector2& c_pos) = 0;
     virtual void rotate(const Vector2& _ang) = 0;//повернуть относительно центра
     virtual Object* lightCopy() = 0;
+
+    virtual bool containsDot(const Vector2& dot) = 0;
 };
 
 

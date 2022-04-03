@@ -114,7 +114,6 @@ void Camera::renderAll(){
         Vector2 size(1, 1);
         //нарисуем квадрат для каждого чанка
         Vector2 c_s = -(pos - curr).toFlo();//координата начала чанка
-        //drawRect(c_s + Vector2(1, 1) * 0.02, Vector2(1, 1) * 0.96);
 
         iter.getChunk()->render(*this, c_s);
     }

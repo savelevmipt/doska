@@ -81,10 +81,8 @@ ChunkObject* Doska2::assemble(const Position& begin, const Position& end, IntPos
             Object* o = c->objects[i];
             Vector2 ct = chunk_pos - o->center;
 
-            Vector2 cd = ct;
-            cd.rotateBack(o->ang);
             //Проверить пересечения квадратов
-            if(fabs(cd.x) < o->size.x && fabs(cd.y) < o->size.y ||
+            if(o->containsDot(chunk_pos) ||
                     checkIntersect(ct - Vector2(o->size.x,  o->size.y).rotateRet(o->ang), Vector2(0,-2 * o->size.y).rotateRet(o->ang), size) ||
                     checkIntersect(ct - Vector2(o->size.x, -o->size.y).rotateRet(o->ang), Vector2(-2 * o->size.x,0).rotateRet(o->ang), size) ||
                     checkIntersect(ct - Vector2(-o->size.x,-o->size.y).rotateRet(o->ang), Vector2(0, 2 * o->size.y).rotateRet(o->ang), size) ||
