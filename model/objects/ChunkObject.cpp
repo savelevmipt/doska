@@ -32,3 +32,11 @@ Object* ChunkObject::lightCopy() {
         obj->chunk.objects.push_back(o->lightCopy());
     return obj;
 }
+void ChunkObject::resize(const Vector2 &d_size) {
+    Square::resize(d_size);
+    for(Line& l: chunk.lines){
+        Vector2 st = l.start;
+        st.rotateBack(ang);
+//        st.set(st.x *)
+    }
+}

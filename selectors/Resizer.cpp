@@ -20,6 +20,14 @@ void Resizer::begin(const Position& start){
         Square sq;
         Vector2 click = (start - chunk_pos).toFlo();
 
+        sq.center = resizing->center;
+        sq.size = resizing->size;
+        sq.ang = resizing->ang;
+        if(sq.containsDot(click)){
+            active_mod = RESIZER_MOVING;
+            return;
+        }
+
         sq.center = resizing->center +
                  Vector2(resizing->size.x + 25 / cam.scale, 0)
                 .rotateRet(resizing->ang);
@@ -29,12 +37,34 @@ void Resizer::begin(const Position& start){
             active_mod = RESIZER_ROTATING;
             return;
         }
-
-        sq.center = resizing->center;
-        sq.size = resizing->size;
-        sq.ang = resizing->ang;
+        scaling_pos.set(0, -resizing->size.y);
+        scaling_pos.rotateRet(resizing->ang);
+        sq.center = resizing->center + scaling_pos;
         if(sq.containsDot(click)){
-            active_mod = RESIZER_MOVING;
+            active_mod = RESIZER_SCALING;
+            return;
+        }
+
+        scaling_pos.set(0, resizing->size.y);
+        scaling_pos.rotateRet(resizing->ang);
+        sq.center = resizing->center + scaling_pos;
+        if(sq.containsDot(click)){
+            active_mod = RESIZER_SCALING;
+            return;
+        }
+        scaling_pos.set(resizing->size.x, 0);
+        scaling_pos.rotateRet(resizing->ang);
+        sq.center = resizing->center + scaling_pos;
+        if(sq.containsDot(click)){
+            active_mod = RESIZER_SCALING;
+            return;
+        }
+
+        scaling_pos.set(-resizing->size.x, 0);
+        scaling_pos.rotateRet(resizing->ang);
+        sq.center = resizing->center - scaling_pos;
+        if(sq.containsDot(click)){
+            active_mod = RESIZER_SCALING;
             return;
         }
 
@@ -45,7 +75,6 @@ void Resizer::begin(const Position& start){
     }
 }
 void Resizer::update(const Position& curr){
-
     if(resizing != nullptr){
         if(active_mod == RESIZER_ROTATING) {
             last = curr;
@@ -63,6 +92,13 @@ void Resizer::update(const Position& curr){
             pos.floor();
             chunk_pos = pos.intp;
             resizing->center = pos.flop;
+        }else if(active_mod == RESIZER_SCALING){
+            Vector2 delta = (curr - last).toFlo();
+            last = curr;
+            double len = 1 / scaling_pos.len();
+            double d = delta.scl(scaling_pos * len);
+            Vector2 proj = scaling_pos * (len * d);
+//            resizing->resize()
         }
     }else{
         last = curr;

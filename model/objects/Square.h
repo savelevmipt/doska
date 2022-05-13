@@ -13,6 +13,8 @@ public:
     ~Square() override;
     void rotate(const Vector2& _ang) override;
     Object* lightCopy() override;
+    void resize(const Vector2& d_size) override;
+
     bool containsDot(const Vector2& point) override;
 };
 
