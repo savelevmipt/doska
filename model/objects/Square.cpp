@@ -19,3 +19,11 @@ Object* Square::lightCopy(){
     sq->size = this->size;
     return sq;
 }
+void Square::resize(const Vector2 &d_size) {
+    size += Vector2(d_size).rotateRet(ang);
+}
+bool Square::containsDot(const Vector2 &point) {
+    Vector2 cd = center - point;
+    cd.rotateBack(ang);
+    return fabs(cd.x) < size.x && fabs(cd.y) < size.y;
+}
