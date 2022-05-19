@@ -16,6 +16,7 @@ elseif(APPLE)
     include_directories(${SDL2_DIR}/Headers)
 endif ()
 
+find_package(Boost COMPONENTS thread REQUIRED)
 
 
 
@@ -34,3 +35,8 @@ if(WIN32)
 elseif(APPLE)
     target_link_libraries(doska ${SDL2_DIR}/SDL2)
 endif()
+
+target_link_libraries(
+        ${PROJECT_NAME}
+        Boost::thread
+)
