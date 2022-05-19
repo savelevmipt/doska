@@ -12,6 +12,7 @@ void CurveDrawer::begin(const Position& start){
 void CurveDrawer::update(const Position& curr){
     cam.doska2.addLine(last, curr);
     std::string line_message = "C" + last.to_string() + curr.to_string(); //Curve
+    
     last = curr;
 }
 bool CurveDrawer::finish(){

@@ -14,6 +14,7 @@
 #include <string>
 #include <memory>
 #include <thread>
+#include <queue>
 
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
@@ -22,16 +23,21 @@ namespace websocket = beast::websocket; // from <boost/beast/websocket.hpp>
 namespace net = boost::asio;            // from <boost/asio.hpp>
 using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 
-class reading{
+std::queue <std::string> msg_to_send;
+
+class writing{
 public:
-    reading(std::shared_ptr< websocket::stream<tcp::socket> > ws, std::shared_ptr<Camera> cam) :ws(ws){}
+    writing(std::shared_ptr< websocket::stream<tcp::socket> > ws, std::shared_ptr<Camera> cam) :ws(ws){}
 
     void operator() () {
         beast::flat_buffer buffer;
         std::string s;
-        while (s != "0") {
+        while (true) {
+            while(msg_to_send.empty()) {
+            }
             buffer.clear();
-            std::cin >> s;
+            auto msg = msg_to_send.front();
+            msg_to_send.pop();
             ws->write(net::buffer(s));
         }
     }
@@ -80,8 +86,8 @@ int main(int argc, char** argv) {
     Camera& camera = *cam;
     camera.setSize(1280, 720);
 
-    reading x(ws, cam);
-    std::thread t{x};
+    writing writing_thread(ws, cam);
+    std::thread t{writing_thread};
 
     MouseState state(camera);
     SDL_Event event;
