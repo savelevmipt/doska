@@ -16,8 +16,6 @@ elseif(APPLE)
     include_directories(${SDL2_DIR}/Headers)
 endif ()
 
-find_package(Boost COMPONENTS thread REQUIRED)
-
 
 
 add_executable(doska
@@ -38,5 +36,4 @@ endif()
 
 target_link_libraries(
         ${PROJECT_NAME}
-        Boost::thread
 )
