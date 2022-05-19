@@ -13,7 +13,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include <boost/thread.hpp>
+#include <thread>
 
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
     camera.setSize(1280, 720);
 
     reading x(ws, cam);
-    boost::thread t{x};
+    std::thread t{x};
 
     MouseState state(camera);
     SDL_Event event;
