@@ -1,6 +1,7 @@
 //
 // Created by Matvey on 18.03.2022.
 //
+#include <string>
 
 #ifndef DOSKA_POSITION_H
 #define DOSKA_POSITION_H
@@ -11,6 +12,8 @@ struct IntPosition{
     int x, y;
     IntPosition(int x, int y);
     IntPosition(const Vector2& round_from);
+
+    std::string to_string() const;
 };
 IntPosition operator+(IntPosition a, IntPosition b);
 IntPosition operator-(IntPosition a, IntPosition b);
@@ -41,6 +44,7 @@ struct Position{
     void buildRectWith(Position& oth);
     bool liesInside(const Position& rtp, const Position& lbp) const;
     Vector2 toFlo() const;
+    std::string to_string() const;
 };
 Position operator+(const Position& a, const Position& b);
 Position operator-(const Position& a, const Position& b);

@@ -1,7 +1,7 @@
 //
 // Created by Matvey on 26.03.2022.
 //
-
+#include <string>
 #ifndef DOSKA_CURVEDRAWER_H
 #define DOSKA_CURVEDRAWER_H
 
@@ -16,6 +16,8 @@ public:
     void update(const Position& curr) override;
     bool finish() override;
     void render() override;
+
+
 };
 
 

@@ -1,7 +1,7 @@
 //
 // Created by Matvey on 18.03.2022.
 //
-
+#include <string>
 #ifndef DOSKA_VECTOR2_H
 #define DOSKA_VECTOR2_H
 
@@ -27,6 +27,8 @@ public:
     void rotate(double angle);
     void norm();
     friend Vector2 operator-(const Vector2& a);
+
+    std::string to_string() const;
 };
 Vector2 operator+(const Vector2& a, const Vector2& b);
 Vector2 operator-(const Vector2& a, const Vector2& b);

@@ -84,3 +84,7 @@ Vector2& operator*=(Vector2& a, double b) {
 double operator>>(const Vector2& a, const Vector2& b) {
     return hypot(a.x - b.x, a.y - b.y);
 }
+
+std::string Vector2::to_string() const {
+    return std::to_string(x) + "$" + std::to_string(y) + "$";
+}

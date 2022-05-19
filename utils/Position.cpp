@@ -1,7 +1,7 @@
 //
 // Created by Matvey on 18.03.2022.
 //
-
+#include <string>
 #include <cmath>
 #include "Position.h"
 IntPosition::IntPosition(int x, int y):x(x), y(y){}
@@ -123,4 +123,11 @@ Position& operator+=(Position& a, const IntPosition& b){
 Position& operator-=(Position& a, const IntPosition& b){
     a.intp -= b;
     return a;
+}
+
+std::string IntPosition::to_string() const {
+    return std::to_string(x) + "$" + std::to_string(y) + "$";
+}
+std::string Position::to_string() const {
+    return flop.to_string() + intp.to_string();
 }
