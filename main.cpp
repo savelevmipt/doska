@@ -83,6 +83,15 @@ private:
 
             cam->doska2.addLine(last, curr);
         }
+        else if (msg[0] == 'R'){ //Rectangle
+            Square* square = new Square;
+            square->center.x =  std::atof(split_vec[0].data());
+            square->center.y =  std::atof(split_vec[1].data());
+            square->size.x =  std::atof(split_vec[2].data());
+            square->size.y =  std::atof(split_vec[3].data());
+            IntPosition chunk(std::atoi(split_vec[4].data()), std::atoi(split_vec[5].data()));
+            cam->doska2.addObject(square, chunk);
+        }
     }
 };
 
