@@ -8,6 +8,7 @@
 #include "Selector.h"
 #include "../model/objects/Square.h"
 
+
 class RectDrawer:public Selector {
 public:
     Position first, last;
