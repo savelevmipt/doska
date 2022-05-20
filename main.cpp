@@ -17,6 +17,8 @@
 #include <memory>
 #include <thread>
 #include <queue>
+#include <chrono>
+
 
 #include "global_variables.hpp"
 
@@ -36,6 +38,7 @@ public:
         beast::flat_buffer buffer;
         while (true) {
             while(msg_to_send.empty()) {
+                std::this_thread::sleep_until(2000);
             }
             buffer.clear();
             auto msg = msg_to_send.front();
@@ -91,6 +94,23 @@ private:
             square->size.y =  std::atof(split_vec[3].data());
             IntPosition chunk(std::atoi(split_vec[4].data()), std::atoi(split_vec[5].data()));
             cam->doska2.addObject(square, chunk);
+        }
+        else if(msg[0] = 'D') { //Delete
+            Position first, last;
+
+            first.flop.x=std::atof(split_vec[0].data());
+            first.flop.y=std::atof(split_vec[1].data());
+            first.intp.x=std::atoi(split_vec[2].data());
+            first.intp.y=std::atoi(split_vec[3].data());
+
+            last.flop.x = std::atof(split_vec[4].data());
+            last.flop.y = std::atof(split_vec[5].data());
+            last.intp.x = std::atoi(split_vec[6].data());
+            last.intp.y = std::atoi(split_vec[7].data());
+
+            IntPosition chunk_to_save(0, 0);
+            ChunkObject* obj = cam->doska2.assemble(first, last, chunk_to_save);
+            delete obj;
         }
     }
 };
