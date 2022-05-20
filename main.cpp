@@ -8,8 +8,10 @@
 #include <boost/beast/core.hpp>
 #include <boost/beast/websocket.hpp>
 #include <boost/asio/connect.hpp>
-#include <boost/asio/ip/tcp.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string.hpp>
 #include <cstdlib>
+#include <cmath>
 #include <iostream>
 #include <string>
 #include <memory>
@@ -28,7 +30,7 @@ std::queue <std::string> msg_to_send;
 
 class writing{
 public:
-    writing(std::shared_ptr< websocket::stream<tcp::socket> > ws, std::shared_ptr<Camera> cam) :ws(ws){}
+    writing(std::shared_ptr< websocket::stream<tcp::socket> >& ws, std::shared_ptr<Camera> cam) :ws(ws){}
 
     void operator() () {
         beast::flat_buffer buffer;
@@ -47,7 +49,7 @@ private:
 
 class reading {
 public:
-    reading(std::shared_ptr< websocket::stream<tcp::socket> > ws, std::shared_ptr<Camera> cam) :ws(ws){}
+    reading(std::shared_ptr< websocket::stream<tcp::socket> >& ws, std::shared_ptr<Camera> cam) :ws(ws), cam(cam){}
 
     void operator() () {
         beast::flat_buffer buffer;
@@ -55,10 +57,33 @@ public:
             buffer.clear();
             ws->read(buffer);
             std::cout << beast::make_printable(buffer.data()) << std::endl;
+            handle_message(beast::buffers_to_string(buffer.data()));
         }
     }
 private:
     std::shared_ptr< websocket::stream<tcp::socket> > ws;
+    std::shared_ptr<Camera> cam;
+
+    void handle_message(std::string msg) {
+        std::cout << "__" + msg << std::endl;
+        std::vector <std::string> split_vec;
+        split(split_vec, msg.substr(1, msg.size()), boost::algorithm::is_any_of("$"));
+        if (msg[0] == 'C') { //Curve
+            Position last, curr;
+
+            last.flop.x = std::atof(split_vec[0].data());
+            last.flop.y = std::atof(split_vec[1].data());
+            last.intp.x = std::atoi(split_vec[2].data());
+            last.intp.y = std::atoi(split_vec[3].data());
+
+            curr.flop.x = std::atof(split_vec[4].data());
+            curr.flop.y = std::atof(split_vec[5].data());
+            curr.intp.x = std::atoi(split_vec[6].data());
+            curr.intp.y = std::atoi(split_vec[7].data());
+
+            cam->doska2.addLine(last, curr);
+        }
+    }
 };
 
 int main(int argc, char** argv) {
