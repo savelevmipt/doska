@@ -38,7 +38,7 @@ public:
         beast::flat_buffer buffer;
         while (true) {
             while(msg_to_send.empty()) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                std::this_thread::sleep_for(std::chrono::milliseconds(5));
             }
             buffer.clear();
             auto msg = msg_to_send.front();
