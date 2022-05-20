@@ -22,3 +22,8 @@ bool Deleter::finish(){
 void Deleter::render(){
     cam.drawRect((first - cam.pos).toFlo(), (last - first).toFlo());
 }
+
+std::string Deleter::to_string() const {
+    return first.to_string() + last.to_string();
+}
+

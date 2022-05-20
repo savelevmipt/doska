@@ -30,6 +30,7 @@ public:
     void render() override;
     void releaseObj();
     ~Resizer() override;
+    std::string to_string() const;
 };
 
 #endif //DOSKA_RESIZER_H

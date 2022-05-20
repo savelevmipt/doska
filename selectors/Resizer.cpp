@@ -153,3 +153,5 @@ void Resizer::releaseObj(){
         cam.doska2.addObject(resizing, chunk_pos);
     resizing = nullptr;
 }
+
+

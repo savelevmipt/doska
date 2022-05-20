@@ -16,6 +16,7 @@ public:
     void resize(const Vector2& d_size) override;
 
     bool containsDot(const Vector2& point) override;
+
 };
 
 #endif //DOSKA_SQUARE_H

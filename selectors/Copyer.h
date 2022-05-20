@@ -15,6 +15,7 @@ public:
     void update(const Position& curr) override;
     bool finish() override;
     void render() override;
+    std::string to_string() const;
 };
 
 

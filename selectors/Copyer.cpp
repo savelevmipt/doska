@@ -25,3 +25,7 @@ bool Copyer::finish(){
 void Copyer::render(){
     cam.drawRect((first - cam.pos).toFlo(), (last - first).toFlo());
 }
+
+std::string Copyer::to_string() const {
+    return first.to_string() + last.to_string();
+}

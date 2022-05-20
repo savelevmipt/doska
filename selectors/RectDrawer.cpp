@@ -30,3 +30,7 @@ bool RectDrawer::finish() {
 void RectDrawer::render() {
     square->render(cam, -(cam.pos - first.intp).toFlo());
 }
+
+std::string RectDrawer::to_string() const {
+    return first.to_string() + last.to_string();
+}
