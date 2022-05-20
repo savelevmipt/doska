@@ -68,7 +68,6 @@ private:
     std::shared_ptr<Camera> cam;
 
     void handle_message(std::string msg) {
-        std::cout << "__" + msg << std::endl;
         std::vector <std::string> split_vec;
         split(split_vec, msg.substr(1, msg.size()), boost::algorithm::is_any_of("$"));
         if (msg[0] == 'C') { //Curve
@@ -117,7 +116,7 @@ private:
 
 int main(int argc, char** argv) {
 
-    std::string host = "localhost";
+    std::string host = "192.168.0.101";
     std::string port = "8083";
     net::io_context ioc;
     tcp::resolver resolver{ioc};
