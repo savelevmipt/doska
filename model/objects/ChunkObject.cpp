@@ -16,7 +16,7 @@ void ChunkObject::rotate(const Vector2& _ang){
         line.start.rotate(_ang);
         line.end.rotate(_ang);
     }
-    for(auto* obj: chunk.objects){
+    for(auto obj: chunk.objects){
         obj->center.rotate(_ang);
         obj->rotate(_ang);
     }
@@ -28,7 +28,7 @@ Object* ChunkObject::lightCopy() {
     obj->ang = this->ang;
     for(Line& l: chunk.lines)
         obj->chunk.lines.push_back(l);
-    for(Object* o: chunk.objects)
+    for(auto o: chunk.objects)
         obj->chunk.objects.push_back(o->lightCopy());
     return obj;
 }

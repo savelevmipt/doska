@@ -27,3 +27,7 @@ bool Square::containsDot(const Vector2 &point) {
     cd.rotateBack(ang);
     return fabs(cd.x) < size.x && fabs(cd.y) < size.y;
 }
+
+std::string Square::to_string() {
+    return center.to_string() + size.to_string();
+}

@@ -17,6 +17,8 @@ public:
 
     bool containsDot(const Vector2& point) override;
 
+    std::string to_string();
+
 };
 
 #endif //DOSKA_SQUARE_H

@@ -17,6 +17,6 @@ void Chunk::render(Camera &cam, const Vector2 &c_pos) {
     for(auto &l: lines)
         cam.drawLine(c_pos + l.start, l.end - l.start);
     //Рисуем объекты
-    for(auto* obj: objects)
+    for(auto obj: objects)
         obj->render(cam, c_pos);
 }

@@ -1,9 +1,7 @@
-//
-// Created by Matvey on 26.03.2022.
-//
-
+#include <queue>
 #include "RectDrawer.h"
 #include "../view/Camera.h"
+extern std::queue <std::string> msg_to_send;
 
 RectDrawer::RectDrawer(Camera &_cam) : Selector(_cam), square(nullptr), def_angle(1, 0) {}
 
@@ -24,6 +22,8 @@ void RectDrawer::update(const Position &curr) {
 bool RectDrawer::finish() {
     square->normSize();
     cam.doska2.addObject(square, first.intp);
+    std::string msg_adding = "R" + square->to_string() + first.intp.to_string();
+    msg_to_send.push(msg_adding);
     return true;
 }
 
