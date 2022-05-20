@@ -167,8 +167,23 @@ int main(int argc, char** argv) {
     bool running = true;
 
     while(running){
-        while(!SDL_PollEvent(&event))
+        while(!SDL_PollEvent(&event)) {
             camera.renderAll();
+
+//            while(!msg_to_send.empty()){
+//                std::string s = msg_to_send.back();
+//                msg_to_send.pop();
+//                ws->write(s);
+//            }
+
+            /*
+            while(!msg_to_update.empty()){
+                std::string s = msg_to_update.back();
+                msg_to_update.pop();
+                //TODO update
+            }
+            */
+        }
 
         switch(event.type){
             case SDL_QUIT:
